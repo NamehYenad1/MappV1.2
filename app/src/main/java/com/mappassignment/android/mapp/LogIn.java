@@ -20,21 +20,18 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 public class LogIn extends AppCompatActivity {
-    private String mEmail="a@yahoo.com";
-    private String mPassword="password";
+
     private Button mLoginButton;
     private Button mSignUpButton;
     private EditText mPasswordInput;
     private EditText mEmailInput;
     private static final String TAG = "LOGIN";
-    private String mPasswordInputFinal;
-    private String mEmailInputFinal;
+
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mPasswordInput=(EditText) findViewById(R.id.editText2);
-        mEmailInput=(EditText) findViewById(R.id.editText);
+
          mAuth=FirebaseAuth.getInstance();
 
         super.onCreate(savedInstanceState);
@@ -53,7 +50,12 @@ public class LogIn extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-    checkCredentials();
+                mPasswordInput=(EditText) findViewById(R.id.editText2);
+                mEmailInput=(EditText) findViewById(R.id.editText);
+                String mPassword=mPasswordInput.getText().toString();
+                String mEmail=mEmailInput.getText().toString();
+
+    checkCredentials(mEmail,mPassword);
 }
         });
     }
@@ -69,8 +71,9 @@ public class LogIn extends AppCompatActivity {
 
 
 
-    public void checkCredentials(){
-        mAuth.signInWithEmailAndPassword(mEmailInput.toString(), mPasswordInput.toString())
+    public void checkCredentials(String Email, String Password){
+
+        mAuth.signInWithEmailAndPassword(Email, Password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
