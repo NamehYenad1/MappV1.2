@@ -11,7 +11,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#2E4058"
+    android:background="@drawable/gradient_background"
     tools:context="com.mappassignment.android.mapp.LogIn"
 
     >
@@ -21,12 +21,12 @@
 
 
     <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        app:srcCompat="@drawable/lock2"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        app:srcCompat="@drawable/UltiPass_logo_v3"
         android:id="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 
     <EditText
@@ -106,10 +106,10 @@
         android:id="@+id/SignUp"
         android:layout_width="1000dp"
         android:background="#39D9F6"
+        android:layout_marginTop="37dp"
+        android:textColor="#ffffff"
         android:layout_below="@+id/login"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="13dp"
-        android:textColor="#ffffff"/>
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
