@@ -9,8 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -22,12 +26,13 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.spec.SecretKeySpec;
 
 public class notice extends AppCompatActivity  {
+    private FirebaseAuth mAuth;
     private static SecretKeySpec secret;
     private Button signOut;
     private EditText test;
     private Button encrypt;
     private Button decrypt;
-    private TextView secretKey;
+    private EditText secretKey;
     private String privateString;
     private byte[] key;
     private EditText testDecrypt;
@@ -37,11 +42,17 @@ public class notice extends AppCompatActivity  {
     private String salt = "slkdjaldja";
     private String HashKey;
     private TextView HasedPrivateKey;
+    private EditText GetKeyFromDatabase;
+    private Button NextPage;
+    private DatabaseReference mDatabaseReference;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.noticemessage);
         HasedPrivateKey=(TextView) findViewById(R.id.HashKey);
+
+        mDatabaseReference= FirebaseDatabase.getInstance().getReference();
         signOut = (Button) findViewById(R.id.signOut);
         signOut.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -61,10 +72,13 @@ public class notice extends AppCompatActivity  {
             sks = new SecretKeySpec((kg.generateKey()).getEncoded(), "AES");
             //SecretKey Key = KeyGenerator.getInstance("AES").generateKey();
             String encodeKey = Base64.encodeToString(sks.getEncoded(),Base64.DEFAULT);
-            secretKey = (TextView) findViewById((R.id.SecretKey));
+            secretKey = (EditText) findViewById((R.id.SecretKey));
             secretKey.setText(encodeKey);
            HashKey = Hash(encodeKey, salt);
+            saveHashKey();
             HasedPrivateKey.setText(HashKey);
+
+
         } catch (Exception e) {
             Log.e(TAG, "AES secret key spec error");
         }
@@ -157,7 +171,13 @@ public class notice extends AppCompatActivity  {
     }
 
 
+private void saveHashKey(){
 
+SaveHashKey mSaveHasKey= new SaveHashKey(HashKey);
+    FirebaseUser user = mAuth.getCurrentUser();
+    mDatabaseReference.child(user.getUid()).setValue(mSaveHasKey);
+    Toast.makeText(this, "hash key saved", Toast.LENGTH_LONG).show();
+}
 
 
 

@@ -60,21 +60,30 @@
         android:layout_below="@+id/TestEncrypt"
         android:layout_centerHorizontal="true"/>
 
-    <TextView
+    <EditText
         android:id="@+id/SecretKey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/TestDecrypt"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="43dp"
-        android:text="TextView"/>
+        android:text="TextView"
+        android:layout_above="@+id/signOut"
+        android:layout_alignRight="@+id/HashKey"
+        android:layout_alignEnd="@+id/HashKey"/>
 
-    <TextView
+    <EditText
         android:id="@+id/HashKey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/SecretKey"
-        android:layout_alignStart="@+id/SecretKey"
-        android:layout_alignTop="@+id/SecretKey"
-        android:text="HashKey"/>
+        android:text="HashKey"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/TestDecrypt"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/NextPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Decrypt"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/Decrypt"
+        android:text="NextPage"/>
 </RelativeLayout>
