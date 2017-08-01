@@ -8,10 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.vision.text.Text;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,7 +25,7 @@ public class LogIn extends AppCompatActivity {
     private String mEmail="a@yahoo.com";
     private String mPassword="password";
     private Button mLoginButton;
-    private Button mSignUpButton;
+    private TextView mSignUpButton;
     private EditText mPasswordInput;
     private EditText mEmailInput;
     private static final String TAG = "LOGIN";
@@ -39,7 +41,7 @@ public class LogIn extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        mSignUpButton =(Button) findViewById(R.id.SignUp);
+        mSignUpButton =(TextView) findViewById(R.id.Register);
         mLoginButton =(Button) findViewById(R.id.login);
         mSignUpButton.setOnClickListener(new View.OnClickListener(){
             @Override
