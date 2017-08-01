@@ -1,5 +1,7 @@
 package com.mappassignment.android.mapp;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -29,20 +31,22 @@ public class notice extends AppCompatActivity  {
     private FirebaseAuth mAuth;
     private static SecretKeySpec secret;
     private Button signOut;
-    private EditText test;
-    private Button encrypt;
-    private Button decrypt;
-    private EditText secretKey;
+    private TextView mNotice;
+
+  //  private EditText test;
+ //   private Button encrypt;
+  //  private Button decrypt;
+    //private EditText secretKey;
     private String privateString;
-    private byte[] key;
-    private EditText testDecrypt;
+   private byte[] key;
+   // private EditText testDecrypt;
     private static final String TAG = "encryption";
     SecretKeySpec sks = null;
     private static final String ALGORITHM = "AES";
     private String salt = "slkdjaldja";
     private String HashKey;
-    private TextView HasedPrivateKey;
-    private EditText GetKeyFromDatabase;
+  //  private TextView HasedPrivateKey;
+  //  private EditText GetKeyFromDatabase;
     private Button NextPage;
     private DatabaseReference mDatabaseReference;
     @Override
@@ -50,8 +54,9 @@ public class notice extends AppCompatActivity  {
         mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.noticemessage);
-        HasedPrivateKey=(TextView) findViewById(R.id.HashKey);
 
+      //  HasedPrivateKey=(TextView) findViewById(R.id.HashKey);
+        mNotice=(TextView) findViewById(R.id.notice);
         mDatabaseReference= FirebaseDatabase.getInstance().getReference();
         signOut = (Button) findViewById(R.id.signOut);
         signOut.setOnClickListener(new View.OnClickListener(){
@@ -72,11 +77,21 @@ public class notice extends AppCompatActivity  {
             sks = new SecretKeySpec((kg.generateKey()).getEncoded(), "AES");
             //SecretKey Key = KeyGenerator.getInstance("AES").generateKey();
             String encodeKey = Base64.encodeToString(sks.getEncoded(),Base64.DEFAULT);
-            secretKey = (EditText) findViewById((R.id.SecretKey));
-            secretKey.setText(encodeKey);
+          //  secretKey = (EditText) findViewById((R.id.SecretKey));
+          //  secretKey.setText(encodeKey);
+
+            mNotice.setText("Please write down the private key we have generated for you, you will be required to use this as a 2nd password for extra security, the key is:"+encodeKey);
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("KeyPreference", MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+
+            //Setting the private key in shared preference to be used in the rest of the activities
+            editor.putString("PrivateKey", encodeKey);
+            editor.commit();
+            Log.d(TAG,"Key in shared preference is :"+pref.getString("PrivateKey",null));
+
            HashKey = Hash(encodeKey, salt);
             saveHashKey();
-            HasedPrivateKey.setText(HashKey);
+         //   HasedPrivateKey.setText(HashKey);
 
 
         } catch (Exception e) {
@@ -84,29 +99,41 @@ public class notice extends AppCompatActivity  {
         }
 
 
+
 //button declaration
-    encrypt=(Button) findViewById(R.id.Encrypt);
-        decrypt=(Button) findViewById(R.id.Decrypt);
-        test=(EditText) findViewById(R.id.TestEncrypt);
-        testDecrypt=(EditText) findViewById(R.id.TestDecrypt);
+
+        NextPage = (Button) findViewById(R.id.NextPage);
+        NextPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(notice.this, TestPageForDatabase.class);
+                startActivity(i);
+            }
+        });
+
+
+   // encrypt=(Button) findViewById(R.id.Encrypt);
+      //  decrypt=(Button) findViewById(R.id.Decrypt);
+     //   test=(EditText) findViewById(R.id.TestEncrypt);
+      //  testDecrypt=(EditText) findViewById(R.id.TestDecrypt);
 
         //testing encrypting
-        encrypt.setOnClickListener((new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
-             Encrypt(test.getText().toString(),sks);
-         }
-     }));
+    //    encrypt.setOnClickListener((new View.OnClickListener() {
+    //     @Override
+     //    public void onClick(View v) {
+     //        Encrypt(test.getText().toString(),sks);
+   //      }
+  //   }));
 
 
         //testing decrypting
-        decrypt.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                mDecrypt(Encrypt(test.getText().toString(),sks), sks);
-            }
+    //    decrypt.setOnClickListener(new View.OnClickListener(){
+    //        @Override
+    //        public void onClick(View v){
+      //          mDecrypt(Encrypt(test.getText().toString(),sks), sks);
+      //      }
 
-        });
+     //   });
 
 
 
@@ -124,8 +151,8 @@ public class notice extends AppCompatActivity  {
             Log.e(TAG, "AES encryption error");
         }
 
-        test.setText("[ENCODED]:\n" +
-                Base64.encodeToString(encodedBytes, Base64.DEFAULT) + "\n");
+     //   test.setText("[ENCODED]:\n" +
+         //       Base64.encodeToString(encodedBytes, Base64.DEFAULT) + "\n");
 
             return encodedBytes;
     }
@@ -143,13 +170,13 @@ public class notice extends AppCompatActivity  {
             Log.e(TAG, "AES decryption error");
         }
 
-        testDecrypt.setText("[DECODED]:\n" + new String(decodedBytes) + "\n");
+     //   testDecrypt.setText("[DECODED]:\n" + new String(decodedBytes) + "\n");
         Log.d(TAG,decodedBytes.toString());
         return decodedBytes.toString();
 
 
     }
-
+//hashing method
     public String Hash(String PrivateKey, String   salt){
         String generatedPassword = null;
         try {
@@ -175,6 +202,7 @@ private void saveHashKey(){
 
 SaveHashKey mSaveHasKey= new SaveHashKey(HashKey);
     FirebaseUser user = mAuth.getCurrentUser();
+    Log.d(TAG, user.getUid().toString());
     mDatabaseReference.child(user.getUid()).setValue(mSaveHasKey);
     Toast.makeText(this, "hash key saved", Toast.LENGTH_LONG).show();
 }

@@ -37,7 +37,7 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.popup);
+        setContentView(R.layout.signup);
         mEmailField=(EditText) findViewById(R.id.editText3);
         mPasswordField = (EditText) findViewById(R.id.editText4);
 // ...

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/background">
 
 
-    <EditText
+   <!-- <EditText
         android:id="@+id/TestEncrypt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,8 +16,15 @@
         android:text="Encrypt Info"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
+        android:layout_alignParentStart="true"/>-->
+    <TextView
+        android:id="@+id/notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="PLACEHOOOOOOOOOOOOOOOOOOOOOOOOLDER"
+        android:layout_marginTop="92dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
 
 
 
@@ -25,11 +33,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="sign out"
-        android:layout_alignBaseline="@+id/Encrypt"
-        android:layout_alignBottom="@+id/Encrypt"
-        android:layout_centerHorizontal="true"/>
 
-    <Button
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+<!--    <Button
         android:id="@+id/Encrypt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,14 +86,15 @@
         android:text="HashKey"
         android:layout_marginTop="28dp"
         android:layout_below="@+id/TestDecrypt"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"/>-->
 
     <Button
         android:id="@+id/NextPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/Decrypt"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/Decrypt"
-        android:text="NextPage"/>
+
+        android:text="NextPage"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
 </RelativeLayout>

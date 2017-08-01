@@ -84,7 +84,7 @@ public class LogIn extends AppCompatActivity {
 
 
 
-                            Intent i = new Intent(LogIn.this, notice.class);
+                            Intent i = new Intent(LogIn.this, SecondAutentication.class);
             startActivity(i);
 
                         } else {

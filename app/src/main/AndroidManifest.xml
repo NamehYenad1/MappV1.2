@@ -41,7 +41,11 @@
         <activity
             android:name=".notice"
             android:theme="@style/NoActionBar"/>
-        <activity android:name=".TestPageForDatabase">
+        <activity
+            android:name=".TestPageForDatabase"
+            android:theme="@style/NoActionBar">
+        </activity>
+        <activity android:name=".SecondAutentication">
         </activity>
     </application>
 
