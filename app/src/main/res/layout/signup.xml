@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#ffffff"
-                >
+                android:background="@drawable/gradient_background">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        app:srcCompat= "@drawable/logo"/>
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:hint="Enter Email"
-        android:ems="10"
-        android:layout_marginTop="111dp"
         android:id="@+id/editText3"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter Email"
+        android:inputType="textEmailAddress"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -23,58 +29,30 @@
         android:inputType="textPassword"
         android:hint="Enter password"
         android:ems="10"
+        android:layout_marginTop="35dp"
+        android:id="@+id/editText4"
         android:layout_below="@+id/editText3"
+        android:layout_alignRight="@+id/editText3"
+        android:layout_alignEnd="@+id/editText3"
         android:layout_alignLeft="@+id/editText3"
-        android:layout_alignStart="@+id/editText3"
-        android:layout_marginTop="50dp"
-        android:id="@+id/editText4"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Status"
-        android:inputType="phone"
-        android:ems="10"
-        android:layout_below="@+id/editText4"
-        android:layout_alignLeft="@+id/editText4"
-        android:layout_alignStart="@+id/editText4"
-        android:layout_marginTop="55dp"
-        android:id="@+id/editText5"/>
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Status2"
-        android:inputType="phone"
-        android:ems="10"
-        android:layout_below="@+id/editText4"
-        android:layout_alignLeft="@+id/editText4"
-        android:layout_alignStart="@+id/editText4"
-        android:layout_marginTop="55dp"
-        android:id="@+id/editText6"/>
-
-    <TextView
-        android:text="Sign Up"
-        android:textSize="40dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:layout_marginTop="12dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_alignStart="@+id/editText3" />
 
     <Button
-        android:text="Create"
+        android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        style="?android:attr/borderlessButtonStyle"
 
-        android:id="@+id/button"
-        android:layout_below="@+id/editText5"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp"/>
+        android:layout_alignEnd="@+id/editText4"
+        android:layout_alignLeft="@+id/editText4"
+        android:layout_alignRight="@+id/editText4"
+        android:layout_alignStart="@+id/editText4"
+        android:layout_below="@+id/editText4"
+        android:layout_marginTop="58dp"
+        android:background="#00BFFF"
+        android:text="Sign up"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
 
 
 

@@ -3,7 +3,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/background">
+                android:background="@drawable/gradient_background">
 
 
    <!-- <EditText
@@ -21,23 +21,28 @@
         android:id="@+id/notice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="PLACEHOOOOOOOOOOOOOOOOOOOOOOOOLDER"
-        android:layout_marginTop="92dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
-
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="92dp"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        tools:text="PLACEHOLDER" />
 
 
     <Button
         android:id="@+id/signOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/NextPage"
+        android:layout_alignLeft="@+id/NextPage"
+        android:layout_alignRight="@+id/NextPage"
+        android:layout_alignStart="@+id/NextPage"
+        android:layout_below="@+id/NextPage"
+        android:layout_marginTop="34dp"
+        android:background="#00BFFF"
         android:text="sign out"
-
-
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
 
 <!--    <Button
         android:id="@+id/Encrypt"
@@ -90,11 +95,14 @@
 
     <Button
         android:id="@+id/NextPage"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
 
-        android:text="NextPage"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:background="#00BFFF"
+        android:text="Continue"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:layout_marginTop="135dp"
+        android:layout_below="@+id/notice"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

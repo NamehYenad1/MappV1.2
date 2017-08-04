@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#2E4058"
+    android:background="@drawable/gradient_background"
     tools:context="com.mappassignment.android.mapp.SecondAutentication"
 
     >
@@ -18,18 +18,26 @@
         android:id="@+id/KeyInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Paste encryption key here to log in"
         android:layout_above="@+id/EnterKey"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="101dp"/>
-
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="101dp"
+        android:hint="Paste encryption key here to log in"
+        android:text="Paste encryption key here to log in"
+        android:textColor="#FFFFFF"
+        android:textSize="19sp" />
 
 
     <Button
         android:id="@+id/EnterKey"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Enter"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
+        android:background="#00BFFF"
+        android:text="Enter"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
 </RelativeLayout>
